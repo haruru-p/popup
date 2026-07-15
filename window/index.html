@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset = "UTF-8">
+ <title>新しいタブ - ポップアップウィンドウでリンクを開く</title>
+ <link rel="icon" href="../SystemImage/icon.svg">
+ <style>
+  body { display: flex; flex-direction: column; align-items: center; gap: 20px; background-image: url('../SystemImage/Background.jpg'); overflow: hidden; }
+  h1 { color: white; cursor: default; }
+  .textbox { background: none; border: 3px solid white; color: white; border-radius: 5px; transition: 0.3s; }
+  .textbox:focus { background-color: white; color: black; border: 3px solid black; }
+  h3 { font-size: 20px; color: white; cursor: default; }
+  #div1, #div2-1, #div3-1 { border: 5px dashed #888; border-radius: 8px; text-align: center; width: 1000px; }
+  .div2 { display: flex; justify-content: center; }
+  #URL, #URL2, #search { width: 500px; font-size: 40px; }
+  button { border: 2px solid white; color: white; background-color: black; transition: 0.3s; border-radius: 5px; cursor: pointer; }
+  button:hover { background-color: white; color: black; }
+  ::placeholder { color: #bbb; }
+  .app { width: 190px; height: 40px; }
+  .divapp { gap: 5px; }
+  #time { position: fixed; bottom: 0px; right: 20px; color: white; background-color: black; cursor: pointer; }
+  #nowtime { display: none; width: 100%; height: 100vh; font-size: 20vw; color: white; background-color: black; flex-direction: column; align-items: center; font-family: serif; cursor: default; }
+  #today { font-size: 5vw; }
+ </style>
+</head>
+<body>
+ <div id="nowtime">
+  <div id="2nowtime">--:--:--</div>
+  <div id="today">----年--月--日--曜日</div>
+ </div>
+
+ <div id="div1">
+  <h1>ポップアップウィンドウでサイトを開く</h1><br>
+  <div class="div2">
+   <h3>https://</h3>
+   <input type="text" id="URL" class="textbox" placeholder="URLを入力..." title="alt+h">
+   <button id="enter" title="ポップアップウィンドウで開く" tabindex="-1">開く</button>
+  </div>
+  <div class="div2">
+   <h3>file:///</h3>
+   <input type="text" id="URL2" class="textbox" placeholder="ファイルURLを入力..." title="alt+f">
+   <button id="enter2" title="ポップアップウィンドウで開く" tabindex="-1">開く</button>
+  </div>
+ </div>
+
+ <div id="div2-1">
+  <h1>ポップアップウィンドウでGoogle検索</h1><br>
+  <div class="div2">
+   <h3>検索</h3>
+   <input type="text" id="search" class="textbox" placeholder="Googleで検索..." title="alt+l">
+   <button id="enter3" title="ポップアップウィンドウで検索" tabindex="-1">検索</button>
+  </div>
+ </div>
+
+ <div id="div3-1">
+  <h1>保存されたタブを開く</h1>
+  <div id="divapp1" class="div2 divapp">
+   <button class="app" id="app1" title="alt+g">Googleを開く</button>
+   <button class="app" id="app2" title="alt+y">Yahooを開く</button>
+   <button class="app" id="app3" title="alt+s">Scratchを開く</button>
+   <button class="app" id="app4" title="alt+c">Classroomを開く</button>
+   <button class="app" id="app5" title="alt+a">AIモードを開く</button>
+  </div><br>
+  <div id="divapp2" class="div2 divapp">
+   <button class="app" id="app6" title="alt+e">まなびポケット</button>
+   <button class="app" id="app7" title="alt+d">ドリルパーク</button>
+   <button class="app" id="app8" title="alt+o">オクリンクプラス</button>
+   <button class="app" id="app9" title="alt+v">マナビリア</button>
+  </div><br>
+  <div id="divapp3" class="div2 divapp">
+   <button class="app" id="app11" title="alt+m">メモ帳を開く</button>
+   <button class="app" id="app12" title="alt+b">Base64を開く</button>
+  </div>
+ </div>
+
+ <h3 id="time" title="alt+t">--:--:--</h3>
+
+ <script>
+  const URL = document.getElementById('URL')
+  const URL2 = document.getElementById('URL2')
+  const search = document.getElementById("search")
+  const app1 = document.getElementById("app1")
+  const app2 = document.getElementById("app2")
+  const app3 = document.getElementById("app3")
+  const app4 = document.getElementById("app4")
+  const app5 = document.getElementById("app5")
+  const app6 = document.getElementById("app6")
+  const app7 = document.getElementById("app7")
+  const app8 = document.getElementById("app8")
+  const app9 = document.getElementById("app9")
+  const app11 = document.getElementById("app11")
+  const app12 = document.getElementById("app12")
+  let timeShow = 0;
+  const weekList = ["日","月","火","水","木","金","土"]
+
+  URL.focus()
+
+
+  document.getElementById('enter').addEventListener("click", ()=>{
+   window.open(`https://${URL.value}`, 'popup_web', 'width=800, height=600, noopener, noreferrer');
+  });
+  document.getElementById('enter2').addEventListener("click", ()=>{
+   window.open(`file:///${URL2.value}`, 'popup_file', 'width=800, height=600, noopener, noreferrer');
+  });
+
+  URL.addEventListener('keydown', (e)=>{
+   if (e.key === 'Enter'){
+    document.getElementById('enter').click()
+   }
+  });
+  URL2.addEventListener('keydown', (e)=>{
+   if (e.key === 'Enter'){
+    document.getElementById('enter2').click()
+   }
+  });
+
+  document.getElementById("enter3").addEventListener("click", ()=>{
+   window.open(`https://www.google.com/search?q=${search.value}&safe=active&ssui=on`, 'search', 'width=800, height=600, noopener, noreferrer');
+  });
+
+  search.addEventListener('keydown', (e)=>{
+   if (e.key === 'Enter'){
+    document.getElementById('enter3').click()
+   }
+  });
+
+
+  app1.addEventListener('click', ()=>{
+   window.open('https://google.com', 'app1', 'width=800, height=600, noopener, noreferrer');
+  });
+  app2.addEventListener('click', ()=>{
+   window.open('https://yahoo.co.jp', 'app2', 'width=800, height=600, noopener, noreferrer');
+  });
+  app3.addEventListener('click', ()=>{
+   window.open('https://scratch.mit.edu', 'app3', 'width=800, height=600, noopener, noreferrer');
+  });
+  app4.addEventListener('click', ()=>{
+   window.open('https://classroom.google.com', 'app4', 'width=800, height=600, noopener, noreferrer');
+  });
+  app5.addEventListener('click', ()=>{
+   window.open('https://google.com/ai', 'app5', 'width=800, height=600, noopener, noreferrer');
+  });
+  app6.addEventListener('click', ()=>{
+   window.open('https://ed-cl.com', 'app6', 'width=800, height=600, noopener, noreferrer');
+  });
+  app7.addEventListener('click', ()=>{
+   window.open('https://ed-cl.com/contents/458/access', 'app7', 'width=800, height=600, noopener, noreferrer');
+  });
+  app8.addEventListener('click', ()=>{
+   window.open('https://ed-cl.com/contents/1097/access', 'app8', 'width=800, height=600, noopener, noreferrer');
+  });
+  app9.addEventListener('click', ()=>{
+   window.open('https://manavi.meijitosho.co.jp/student/learning_status', 'app9', 'width=800, height=600, noopener, noreferrer');
+  });
+  app11.addEventListener('click', ()=>{
+   window.open('../../memo/index.html', 'app11', 'width=800, height=600, noopener, noreferrer');
+  });
+  app12.addEventListener('click', ()=>{
+   window.open('../../encode/index.html', 'app12', 'width=800, height=600, noopener, noreferrer');
+  });
+
+
+  document.addEventListener('keydown', (e)=>{
+   if (e.altKey && e.key === 'h'){
+    e.preventDefault()
+    URL.focus()
+    timeShow = 0
+    document.getElementById('nowtime').style.display = 'none';
+   }
+   if (e.altKey && e.key === 'f'){
+    e.preventDefault()
+    URL2.focus()
+    timeShow = 0
+    document.getElementById('nowtime').style.display = 'none';
+   }
+   if (e.altKey && e.key === 'l'){
+    e.preventDefault()
+    search.focus()
+    timeShow = 0
+    document.getElementById('nowtime').style.display = 'none';
+   }
+   if (e.altKey && e.key === 't'){
+    e.preventDefault()
+    app3.focus()
+    document.getElementById('time').click()
+   }
+   if (e.altKey && e.key === 'g'){
+    e.preventDefault()
+    app1.click()
+   }
+   if (e.altKey && e.key === 'y'){
+    e.preventDefault()
+    app2.click()
+   }
+   if (e.altKey && e.key === 's'){
+    e.preventDefault()
+    app3.click()
+   }
+   if (e.altKey && e.key === 'c'){
+    e.preventDefault()
+    app4.click()
+   }
+   if (e.altKey && e.key === 'a'){
+    e.preventDefault()
+    app5.click()
+   }
+   if (e.altKey && e.key === 'e'){
+    e.preventDefault()
+    app6.click()
+   }
+   if (e.altKey && e.key === 'd'){
+    e.preventDefault()
+    app7.click()
+   }
+   if (e.altKey && e.key === 'o'){
+    e.preventDefault()
+    app8.click()
+   }
+   if (e.altKey && e.key === 'v'){
+    e.preventDefault()
+    app9.click()
+   }
+   if (e.altKey && e.key === 'm'){
+    e.preventDefault()
+    app11.click()
+   }
+   if (e.altKey && e.key === 'b'){
+    e.preventDefault()
+    app12.click()
+   }
+
+   if (e.ctrlKey && e.key === 'f'){
+    e.preventDefault()
+    if (document.fullscreenElement){
+     document.exitFullscreen()
+    }else{
+     document.documentElement.requestFullscreen()
+    }
+   }
+  });
+
+  // 時計の設定
+  setInterval(()=>{
+   const now = new Date()
+   const hours = String(now.getHours()).padStart(2, '0');
+   const minutes = String(now.getMinutes()).padStart(2, '0');
+   const seconds = String(now.getSeconds()).padStart(2, '0');
+   const milliSec = now.getMilliseconds();
+   const year = now.getFullYear();
+   const month = now.getMonth() + 1;
+   const day = now.getDate();
+   const week = weekList[now.getDay()];
+   document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`
+   document.getElementById('2nowtime').textContent = `${hours}:${minutes}:${seconds}`
+   document.getElementById('today').textContent = `${year}年${month}月${day}日${week}曜日`
+  }, 10)
+
+  document.getElementById('time').addEventListener('click', ()=>{
+   if (timeShow === 0){
+    timeShow = 1
+    document.getElementById('nowtime').style.display = 'flex';
+   }else{
+    timeShow = 0
+    document.getElementById('nowtime').style.display = 'none';
+   }
+  });
+
+  document.addEventListener('keydown', (e)=>{
+   if (e.key === 'Tab'){
+    timeShow = 0
+    document.getElementById('nowtime').style.display = 'none';
+   }
+  });
+ </script>
+</body>
+</html>
