@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset = "UTF-8">
+ <title>Redirecting...</title>
+</head>
+<body>
+ <h3>Redirecting...</h3>
+ <script>
+  window.open('window/index.html', 'popupWindowOpen', 'width: 800, height: 600, noopener, noreferrer')
+  document.querySelector('h3').textContent = 'This page was redirected. Please close this page.'
+  document.title = 'This page was redirected'
+  window.close()
+ </script>
+</body>
+</html>
