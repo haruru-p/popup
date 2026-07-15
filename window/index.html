@@ -60,13 +60,7 @@
    <button class="app" id="app3" title="alt+s">Scratchを開く</button>
    <button class="app" id="app4" title="alt+c">Classroomを開く</button>
    <button class="app" id="app5" title="alt+a">AIモードを開く</button>
-  </div><br>
-  <div id="divapp2" class="div2 divapp">
-   <button class="app" id="app6" title="alt+e">まなびポケット</button>
-   <button class="app" id="app7" title="alt+d">ドリルパーク</button>
-   <button class="app" id="app8" title="alt+o">オクリンクプラス</button>
-   <button class="app" id="app9" title="alt+v">マナビリア</button>
-  </div><br>
+  </div>
  </div>
 
  <h3 id="time" title="alt+t">--:--:--</h3>
@@ -80,10 +74,6 @@
   const app3 = document.getElementById("app3")
   const app4 = document.getElementById("app4")
   const app5 = document.getElementById("app5")
-  const app6 = document.getElementById("app6")
-  const app7 = document.getElementById("app7")
-  const app8 = document.getElementById("app8")
-  const app9 = document.getElementById("app9")
   let timeShow = 0;
   const weekList = ["日","月","火","水","木","金","土"]
 
@@ -134,18 +124,6 @@
   app5.addEventListener('click', ()=>{
    window.open('https://google.com/ai', 'app5', 'width=800, height=600, noopener, noreferrer');
   });
-  app6.addEventListener('click', ()=>{
-   window.open('https://ed-cl.com', 'app6', 'width=800, height=600, noopener, noreferrer');
-  });
-  app7.addEventListener('click', ()=>{
-   window.open('https://ed-cl.com/contents/458/access', 'app7', 'width=800, height=600, noopener, noreferrer');
-  });
-  app8.addEventListener('click', ()=>{
-   window.open('https://ed-cl.com/contents/1097/access', 'app8', 'width=800, height=600, noopener, noreferrer');
-  });
-  app9.addEventListener('click', ()=>{
-   window.open('https://manavi.meijitosho.co.jp/student/learning_status', 'app9', 'width=800, height=600, noopener, noreferrer');
-  });
 
 
   document.addEventListener('keydown', (e)=>{
@@ -191,22 +169,6 @@
    if (e.altKey && e.key === 'a'){
     e.preventDefault()
     app5.click()
-   }
-   if (e.altKey && e.key === 'e'){
-    e.preventDefault()
-    app6.click()
-   }
-   if (e.altKey && e.key === 'd'){
-    e.preventDefault()
-    app7.click()
-   }
-   if (e.altKey && e.key === 'o'){
-    e.preventDefault()
-    app8.click()
-   }
-   if (e.altKey && e.key === 'v'){
-    e.preventDefault()
-    app9.click()
    }
 
    if (e.ctrlKey && e.key === 'f'){
