@@ -67,10 +67,6 @@
    <button class="app" id="app8" title="alt+o">オクリンクプラス</button>
    <button class="app" id="app9" title="alt+v">マナビリア</button>
   </div><br>
-  <div id="divapp3" class="div2 divapp">
-   <button class="app" id="app11" title="alt+m">メモ帳を開く</button>
-   <button class="app" id="app12" title="alt+b">Base64を開く</button>
-  </div>
  </div>
 
  <h3 id="time" title="alt+t">--:--:--</h3>
@@ -88,8 +84,6 @@
   const app7 = document.getElementById("app7")
   const app8 = document.getElementById("app8")
   const app9 = document.getElementById("app9")
-  const app11 = document.getElementById("app11")
-  const app12 = document.getElementById("app12")
   let timeShow = 0;
   const weekList = ["日","月","火","水","木","金","土"]
 
@@ -152,12 +146,6 @@
   app9.addEventListener('click', ()=>{
    window.open('https://manavi.meijitosho.co.jp/student/learning_status', 'app9', 'width=800, height=600, noopener, noreferrer');
   });
-  app11.addEventListener('click', ()=>{
-   window.open('../../memo/index.html', 'app11', 'width=800, height=600, noopener, noreferrer');
-  });
-  app12.addEventListener('click', ()=>{
-   window.open('../../encode/index.html', 'app12', 'width=800, height=600, noopener, noreferrer');
-  });
 
 
   document.addEventListener('keydown', (e)=>{
@@ -219,14 +207,6 @@
    if (e.altKey && e.key === 'v'){
     e.preventDefault()
     app9.click()
-   }
-   if (e.altKey && e.key === 'm'){
-    e.preventDefault()
-    app11.click()
-   }
-   if (e.altKey && e.key === 'b'){
-    e.preventDefault()
-    app12.click()
    }
 
    if (e.ctrlKey && e.key === 'f'){
